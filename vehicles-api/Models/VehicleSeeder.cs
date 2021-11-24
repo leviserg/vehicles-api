@@ -39,6 +39,18 @@ namespace vehicles_api.Models
                 ImageUrl = "https://i.infocar.ua/i/12/4353/1400x700.jpg"
             });
 
+            AddNewVehicle(new Vehicle
+            {
+                Brand = "Hyundai",
+                Model = "IX35",
+                Year = 2018,
+                Mileage = 25600,
+                Price = 13699,
+                Status = "good",
+                Location = "USA",
+                ImageUrl = "https://images.ua.prom.st/1770729182_nakladka-na-kryshku.jpg"
+            });
+
             _context.SaveChanges();
         }
 

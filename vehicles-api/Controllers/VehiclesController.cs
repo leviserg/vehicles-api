@@ -23,7 +23,16 @@ namespace vehicles_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vehicle>>> Get()
         {
-            return await _db.Vehicles.ToListAsync();
+            var items = _db.Vehicles.OrderByDescending(u => u.Price).Take(7);
+            return await items.ToListAsync();
+        }
+
+        // GET api/vehicles
+        [HttpGet("more/{stepid}")]
+        public async Task<ActionResult<IEnumerable<Vehicle>>> GetMore(int stepid)
+        {
+            var items = _db.Vehicles.OrderByDescending(u => u.Price).Skip(stepid+1).Take(7);
+            return await items.ToListAsync();
         }
 
         // GET api/vehicles/5
