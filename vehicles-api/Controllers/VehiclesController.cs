@@ -31,7 +31,7 @@ namespace vehicles_api.Controllers
         [HttpGet("more/{stepid}")]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetMore(int stepid)
         {
-            var items = _db.Vehicles.OrderByDescending(u => u.Price).Skip(stepid+1).Take(7);
+            var items = _db.Vehicles.OrderByDescending(u => u.Price).Skip(stepid*7).Take(7);
             return await items.ToListAsync();
         }
 
