@@ -14,6 +14,7 @@ namespace vehicles_api.Controllers
     public class VehiclesController : ControllerBase
     {
         private readonly VehicleDbContext _db;
+
         public VehiclesController(VehicleDbContext context)
         {
             _db = context;
@@ -27,10 +28,11 @@ namespace vehicles_api.Controllers
             return await items.ToListAsync();
         }
 
-        // GET api/vehicles
+        // GET api/vehicles/more/1
         [HttpGet("more/{stepid}")]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetMore(int stepid)
         {
+            stepid = (stepid < 0) ? 0 : stepid;
             var items = _db.Vehicles.OrderByDescending(u => u.Price).Skip(stepid*7).Take(7);
             return await items.ToListAsync();
         }
